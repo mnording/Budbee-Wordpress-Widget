@@ -50,13 +50,16 @@ class BudbeeWooWidget {
 	 * Undocumented function
 	 */
 	public function __construct() {
-
-		$this->budbee_settings = new BudbeeWidgetSettings();
-		$this->api_routes      = new BudbeeWooApiRoutes( $this->budbee_settings->get_api_key(), $this->budbee_settings->get_api_secret() );
 		add_action( 'rest_api_init', array( $this, 'register_api_routes' ) );
 		add_filter( 'query_vars', array( $this, 'add_budbee_query' ) );
-		add_filter( $this->budbee_settings->get_placement_hook(), array( $this, 'generate_widget' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'budbee_woo_enqueue' ) );
+		add_action( 'plugins_loaded', array( $this, 'init_all' ) );
+	}
+	public function init_all() {
+		$this->budbee_settings = new BudbeeWidgetSettings();
+		$this->api_routes      = new BudbeeWooApiRoutes( $this->budbee_settings->get_api_key(), $this->budbee_settings->get_api_secret() );
+		add_filter( $this->budbee_settings->get_placement_hook(), array( $this, 'generate_widget' ) );
+
 	}
 	/**
 	 * Undocumented function
@@ -93,7 +96,7 @@ class BudbeeWooWidget {
 		$content .= '<ul id="budbee-box-response-list"></ul>';
 		$content .= '</div>';
 		$content .= '</div>';
-		return $content;
+		echo ( $content );
 	}
 	/**
 	 * Add budbee query to searchable query params
