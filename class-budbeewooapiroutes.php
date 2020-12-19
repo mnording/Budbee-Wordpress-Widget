@@ -27,8 +27,9 @@ class BudbeeWooApiRoutes {
 	 * @param String $key The API Key provided by Budbee.
 	 * @param String $secret The API Secret provided by Budbee.
 	 */
-	public function __construct( $key, $secret ) {
+	public function __construct( $key, $secret, $maxdistance ) {
 		$this->master_of_requests = new MasterOfRequests( $key, $secret );
+		$this->max_distance       = $maxdistance;
 
 	}
 	/**
@@ -83,7 +84,7 @@ class BudbeeWooApiRoutes {
 			}
 			$res = json_decode( $res['body'] );
 
-			if ( count( $res->lockers ) === 0 ) {
+			if ( count( $res->lockers ) === 0 || $res->lockers[0]->distance > $this->max_distance) {
 				return new WP_Error( 'no_box_delivery', 'No Boxes', array( 'status' => 404 ) );
 			}
 			$res      = array_slice( $res->lockers, 0, 5 );

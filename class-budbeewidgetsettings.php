@@ -41,7 +41,8 @@ class BudbeeWidgetSettings {
 		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_placement_hook' );
 		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_fallback_text' );
 		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_title' );
-		
+		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_max_box_distance' );
+
 	}
 	/**
 	 * Undocumented function
@@ -70,8 +71,11 @@ class BudbeeWidgetSettings {
 	public function get_fallback_text() {
 		return get_option( 'budbee_widget_fallback_text' );
 	}
-	public function get_widget_title(){
+	public function get_widget_title() {
 		return get_option( 'budbee_widget_title' );
+	}
+	public function get_max_distance_from_box() {
+		return get_option( 'budbee_max_box_distance' );
 	}
 	/**
 	 * Undocumented function
@@ -98,6 +102,10 @@ class BudbeeWidgetSettings {
 		<tr valign="top">
 		<th scope="row">Widget Title</th>
 		<td><input type="text" name="budbee_widget_title" value="<?php echo esc_attr( get_option( 'budbee_widget_title' ) ); ?>" /></td>
+		</tr>
+		<tr valign="top">
+		<th scope="row">max distance to box in meters</th>
+		<td><input type="number" name="budbee_max_box_distance" value="<?php echo esc_attr( get_option( 'budbee_max_box_distance' ) ); ?>" /></td>
 		</tr>
 		<tr valign="top">
 		<th scope="row">Hook to display widget at</th>

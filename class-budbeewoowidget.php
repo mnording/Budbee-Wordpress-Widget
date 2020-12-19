@@ -62,7 +62,7 @@ class BudbeeWooWidget {
 	 */
 	public function init_all() {
 		$this->budbee_settings = new BudbeeWidgetSettings();
-		$this->api_routes      = new BudbeeWooApiRoutes( $this->budbee_settings->get_api_key(), $this->budbee_settings->get_api_secret() );
+		$this->api_routes      = new BudbeeWooApiRoutes( $this->budbee_settings->get_api_key(), $this->budbee_settings->get_api_secret(), $this->budbee_settings->get_max_distance_from_box() );
 		add_filter( $this->budbee_settings->get_placement_hook(), array( $this, 'generate_widget' ) );
 		load_plugin_textdomain( 'budbee-widget-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 
@@ -74,6 +74,7 @@ class BudbeeWooWidget {
 	 * @return void
 	 */
 	public function budbee_woo_enqueue() {
+		wp_enqueue_style( 'dashicons' );
 		wp_register_style( 'budbee-widget-plugin', plugins_url( 'css/budbee-widget.css', __FILE__ ), null, '1.0.0' );
 		wp_enqueue_style( 'budbee-widget-plugin' );
 		wp_enqueue_script(
