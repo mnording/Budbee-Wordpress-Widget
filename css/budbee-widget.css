@@ -1,0 +1,29 @@
+#budbee-widget-container {
+    border: 3px solid #41cda5;
+    border-radius:2px;
+    padding: 5px;
+    background-color:white;
+    float:left;
+    width:100%;
+    margin-bottom:5px;
+    margin-top:5px;
+}
+#budbee-widget-container span {
+    float:left;
+}
+#budbee-widget-container h1 {
+    font-size:1.3em;
+    font-weight: bold;
+
+}
+#budbee-widget-container ul {
+    float:left;
+    width:100%;
+    padding:0;
+    padding-left:1em;
+}
+#budbee-widget-container img {
+    width:50px;
+    display:inline;
+    margin-left:10px;
+}

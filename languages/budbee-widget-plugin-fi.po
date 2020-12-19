@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Budbee Widget\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-18 22:34+0000\n"
-"PO-Revision-Date: 2020-12-19 10:50+0000\n"
+"PO-Revision-Date: 2020-12-19 14:09+0000\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Loco-Version: 2.5.0; wp-5.6\n"
 "X-Domain: budbee-widget-plugin"
 
-#: class-budbeewoowidget.php:87
+#: class-budbeewoowidget.php:97
 msgid ""
 "At our store you can get deliveries to your door, to a pickup-point or to a "
 "pickup-box. Enter your postalcode below to get personalized options"
@@ -25,12 +25,20 @@ msgstr ""
 msgid "Budbee Widget"
 msgstr ""
 
-#: class-budbeewoowidget.php:88
+#: class-budbeewoowidget.php:98
 msgid "Enter your postalcode"
+msgstr ""
+
+#: class-budbeewoowidget.php:102
+msgid "Homedelivery"
 msgstr ""
 
 #. Author of the plugin
 msgid "Mnording10"
+msgstr ""
+
+#: class-budbeewoowidget.php:103
+msgid "PickupBox"
 msgstr ""
 
 #. Description of the plugin
@@ -41,16 +49,6 @@ msgstr ""
 msgid "Security check"
 msgstr ""
 
-#: class-budbeewoowidget.php:90
+#: class-budbeewoowidget.php:100
 msgid "See alternatives"
-msgstr ""
-
-#: class-budbeewoowidget.php:95
-msgid ""
-"You can get your package delivered to a Budbee box near you! Your closest "
-"alternatives are:"
-msgstr ""
-
-#: class-budbeewoowidget.php:92
-msgid "You can get your package delivered to your door."
 msgstr ""

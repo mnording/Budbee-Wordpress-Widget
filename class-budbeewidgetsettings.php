@@ -39,6 +39,9 @@ class BudbeeWidgetSettings {
 		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_api_key' );
 		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_api_secret' );
 		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_placement_hook' );
+		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_fallback_text' );
+		register_setting( 'budbee-widget-plugin-settings-group', 'budbee_widget_title' );
+		
 	}
 	/**
 	 * Undocumented function
@@ -64,6 +67,12 @@ class BudbeeWidgetSettings {
 	public function get_placement_hook() {
 		return get_option( 'budbee_widget_placement_hook' );
 	}
+	public function get_fallback_text() {
+		return get_option( 'budbee_widget_fallback_text' );
+	}
+	public function get_widget_title(){
+		return get_option( 'budbee_widget_title' );
+	}
 	/**
 	 * Undocumented function
 	 *
@@ -87,8 +96,16 @@ class BudbeeWidgetSettings {
 		<td><input type="text" name="budbee_widget_api_secret" value="<?php echo esc_attr( get_option( 'budbee_widget_api_secret' ) ); ?>" /></td>
 		</tr>
 		<tr valign="top">
+		<th scope="row">Widget Title</th>
+		<td><input type="text" name="budbee_widget_title" value="<?php echo esc_attr( get_option( 'budbee_widget_title' ) ); ?>" /></td>
+		</tr>
+		<tr valign="top">
 		<th scope="row">Hook to display widget at</th>
 		<td><input type="text" name="budbee_widget_placement_hook" value="<?php echo esc_attr( get_option( 'budbee_widget_placement_hook' ) ); ?>" /></td>
+		</tr>
+		<tr valign="top">
+		<th scope="row">Fallback text to be displayed regardless of Budbee avaliability</th>
+		<td><textarea  name="budbee_widget_fallback_text" ><?php echo esc_attr( get_option( 'budbee_widget_fallback_text' ) ); ?></textarea></td>
 		</tr>
 	</table>
 		<?php submit_button(); ?>

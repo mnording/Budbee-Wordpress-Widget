@@ -55,18 +55,27 @@ class BudbeeWooWidget {
 		add_action( 'wp_enqueue_scripts', array( $this, 'budbee_woo_enqueue' ) );
 		add_action( 'plugins_loaded', array( $this, 'init_all' ) );
 	}
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
 	public function init_all() {
 		$this->budbee_settings = new BudbeeWidgetSettings();
 		$this->api_routes      = new BudbeeWooApiRoutes( $this->budbee_settings->get_api_key(), $this->budbee_settings->get_api_secret() );
 		add_filter( $this->budbee_settings->get_placement_hook(), array( $this, 'generate_widget' ) );
 		load_plugin_textdomain( 'budbee-widget-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+
 	}
+
 	/**
 	 * Undocumented function
 	 *
 	 * @return void
 	 */
 	public function budbee_woo_enqueue() {
+		wp_register_style( 'budbee-widget-plugin', plugins_url( 'css/budbee-widget.css', __FILE__ ), null, '1.0.0' );
+		wp_enqueue_style( 'budbee-widget-plugin' );
 		wp_enqueue_script(
 			'ajax-script',
 			plugins_url( '/js/budbee-woo.js', __FILE__ ),
@@ -79,24 +88,24 @@ class BudbeeWooWidget {
 	 * Generate the actual widget in the frontend
 	 *
 	 * @param String $content Existing content to be rendered in the hook.
-	 * @return String the new content.
+	 * @return void
 	 */
 	public function generate_widget( $content ) {
 		$nonce    = wp_create_nonce( 'wp_rest' );
 		$content .= '<div id="budbee-widget-container">';
+		$content .= '<h1>' . $this->budbee_settings->get_widget_title() . '</h1>';
 		$content .= '<span style="float:left;">' . __( 'At our store you can get deliveries to your door, to a pickup-point or to a pickup-box. Enter your postalcode below to get personalized options', 'budbee-widget-plugin' ) . '</span>';
 		$content .= '<input type="text" onkeypress="budbee_check_key(event)" id="budbee-postal-value" name="budbee-postal" placeholder="' . __( 'Enter your postalcode', 'budbee-widget-plugin' ) . '">';
 		$content .= '<input type="hidden" value="' . $nonce . '"  id="budbee-postal-nonce">';
-		$content .= '<button onclick="budbee_check_alternatives()">' . __( 'See alternatives', 'budbee-widget-plugin' ) . '</button>';
-		$content .= '<div id="budbee-home-response" style = "display:none">';
-		$content .= '<span>' . __( 'You can get your package delivered to your door.', 'budbee-widget-plugin' ) . '</span>';
+		$content .= '<button class="button alt" onclick="budbee_check_alternatives()">' . __( 'See alternatives', 'budbee-widget-plugin' ) . '</button>';
+		$content .= '<ul>';
+		$content .= '<li id="budbee-home-response" style="display:none" class="dashicons-before dashicons-yes">' . __( 'Homedelivery', 'budbee-widget-plugin' ) . '<img src="' . plugins_url( 'img/home-full-logo-medium.png', __FILE__ ) . '"/></li>';
+		$content .= '<li id="budbee-box-response" style="display:none" class="dashicons-before dashicons-yes">' . __( 'PickupBox', 'budbee-widget-plugin' ) . '<img src="' . plugins_url( 'img/box-full-logo-medium.png', __FILE__ ) . '"/></li>';
+		$content .= '<li id="budbee-fallback-text" style="display:none" class="dashicons-before dashicons-yes">' . $this->budbee_settings->get_fallback_text() . '</li>';
+		$content .= '</ul>';
 		$content .= '</div>';
-		$content .= '<div id="budbee-box-response"  style="display:none">';
-		$content .= '<span>' . __( 'You can get your package delivered to a Budbee box near you! Your closest alternatives are:', 'budbee-widget-plugin' ) . '</span>';
-		$content .= '<ul id="budbee-box-response-list"></ul>';
 		$content .= '</div>';
-		$content .= '</div>';
-		echo ( $content );
+		echo $content;
 	}
 	/**
 	 * Add budbee query to searchable query params
