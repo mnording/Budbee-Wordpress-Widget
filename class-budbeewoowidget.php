@@ -104,7 +104,6 @@ class BudbeeWooWidget {
 		$content .= '<li id="budbee-fallback-text" style="display:none" class="dashicons-before dashicons-yes">' . $this->budbee_settings->get_fallback_text() . '</li>';
 		$content .= '</ul>';
 		$content .= '</div>';
-		$content .= '</div>';
 		echo $content;
 	}
 	/**
