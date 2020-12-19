@@ -59,7 +59,7 @@ class BudbeeWooWidget {
 		$this->budbee_settings = new BudbeeWidgetSettings();
 		$this->api_routes      = new BudbeeWooApiRoutes( $this->budbee_settings->get_api_key(), $this->budbee_settings->get_api_secret() );
 		add_filter( $this->budbee_settings->get_placement_hook(), array( $this, 'generate_widget' ) );
-
+		load_plugin_textdomain( 'budbee-widget-plugin', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 	/**
 	 * Undocumented function
@@ -84,7 +84,7 @@ class BudbeeWooWidget {
 	public function generate_widget( $content ) {
 		$nonce    = wp_create_nonce( 'wp_rest' );
 		$content .= '<div id="budbee-widget-container">';
-		$content .= '<span>' . __( 'At our store you can get deliveries to your door, to a pickup-point or to a pickup-box. Enter your postalcode below to get personalized options' ) . '</span>';
+		$content .= '<span style="float:left;">' . __( 'At our store you can get deliveries to your door, to a pickup-point or to a pickup-box. Enter your postalcode below to get personalized options', 'budbee-widget-plugin' ) . '</span>';
 		$content .= '<input type="text" onkeypress="budbee_check_key(event)" id="budbee-postal-value" name="budbee-postal" placeholder="' . __( 'Enter your postalcode', 'budbee-widget-plugin' ) . '">';
 		$content .= '<input type="hidden" value="' . $nonce . '"  id="budbee-postal-nonce">';
 		$content .= '<button onclick="budbee_check_alternatives()">' . __( 'See alternatives', 'budbee-widget-plugin' ) . '</button>';
