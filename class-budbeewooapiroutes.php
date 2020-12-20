@@ -20,12 +20,18 @@ class BudbeeWooApiRoutes {
 	 * @var [type]
 	 */
 	private $master_of_requests;
-
+	/**
+	 * Max distance in meters that should be applied to boxes
+	 *
+	 * @var Integer
+	 */
+	private $max_distance;
 	/**
 	 * Constructor of the class
 	 *
 	 * @param String $key The API Key provided by Budbee.
 	 * @param String $secret The API Secret provided by Budbee.
+	 * @param String $maxdistance The max distance allowed for boxes.
 	 */
 	public function __construct( $key, $secret, $maxdistance ) {
 		$this->master_of_requests = new MasterOfRequests( $key, $secret );
@@ -84,7 +90,7 @@ class BudbeeWooApiRoutes {
 			}
 			$res = json_decode( $res['body'] );
 
-			if ( count( $res->lockers ) === 0 || $res->lockers[0]->distance > $this->max_distance) {
+			if ( count( $res->lockers ) === 0 || $res->lockers[0]->distance > $this->max_distance ) {
 				return new WP_Error( 'no_box_delivery', 'No Boxes', array( 'status' => 404 ) );
 			}
 			$res      = array_slice( $res->lockers, 0, 5 );

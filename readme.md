@@ -1,5 +1,5 @@
-# Budbee widget plugin
-This plugin allows you to render a Budbee widget on any page.
+# Budbee Wordpress Widget Plugin
+This plugin allows you to render a Budbee widget on any Wordpress page.
 
 ![logo](https://github.com/mnording/Budbee-Wordpress-Widget/raw/main/img/screenshot.PNG)
 

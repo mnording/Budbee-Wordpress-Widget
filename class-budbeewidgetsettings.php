@@ -68,17 +68,32 @@ class BudbeeWidgetSettings {
 	public function get_placement_hook() {
 		return get_option( 'budbee_widget_placement_hook' );
 	}
+	/**
+	 * Get the option that should be displayed regardless of Budbee avaliability
+	 *
+	 * @return String the text
+	 */
 	public function get_fallback_text() {
 		return get_option( 'budbee_widget_fallback_text' );
 	}
+	/**
+	 * Get the header for the widget
+	 *
+	 * @return String the header
+	 */
 	public function get_widget_title() {
 		return get_option( 'budbee_widget_title' );
 	}
+	/**
+	 * Get the max allowed distance from box
+	 *
+	 * @return String the distance in meters
+	 */
 	public function get_max_distance_from_box() {
 		return get_option( 'budbee_max_box_distance' );
 	}
 	/**
-	 * Undocumented function
+	 * Render function for the admin page
 	 *
 	 * @return void
 	 */
